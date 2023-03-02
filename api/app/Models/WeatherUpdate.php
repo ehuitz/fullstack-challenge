@@ -16,6 +16,10 @@ class WeatherUpdate extends Model
         'weather',
     ];
 
+    protected $casts = [
+        'weather' => 'array'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
