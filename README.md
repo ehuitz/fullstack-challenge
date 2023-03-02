@@ -33,6 +33,7 @@ Using Laravel and VueJS, create an application which shows the weather for a set
 - Start docker containers `docker compose up` (add `-d` to run detached)
 - Connect to container to run commands: `docker exec -it fullstack-challenge-app-1 bash`
   - Make sure you are in the `/var/www/html` path
+  - I adjusted permissions for this version `chown -R www-data:www-data *`
   - Install php dependencies: `composer install`
   - Setup app key: `php artisan key:generate`
   - Migrate database: `php artisan migrate` 
