@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->json('weather')->nullable();
+            $table->text('url');
             $table->timestamps();
             $table->softDeletes();
         });
