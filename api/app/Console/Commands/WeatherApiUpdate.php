@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Console\Commands;
 
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\WeatherUpdate;
 use GuzzleHttp\Client;
@@ -10,17 +9,38 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Console\Command;
 
-class WeatherUpdateController extends Controller
+class WeatherApiUpdate extends Command
 {
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'weather:update';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+    
     private $client;
 
-    public function __construct(Client $client)
+    public function __construct()
     {
-        $this->client = $client;
+        parent::__construct();
+
+    $this->client = app(Client::class);
     }
 
-    public function update()
+    /**
+     * Execute the console command.
+     */
+
+    public function handle(): void
     {
         Log::info('Starting weather update');
         $users = User::all();
@@ -66,4 +86,5 @@ class WeatherUpdateController extends Controller
 
         Log::info('Finishing weather update');
     }
-}
+    }
+

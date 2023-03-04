@@ -4,11 +4,14 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Http\Controllers\WeatherUpdateController;
 
 
 class Kernel extends ConsoleKernel
 {
+
+    protected $commands = [
+        Commands\WeatherApiUpdate::class
+    ];
     /**
      * Define the application's command schedule.
      *
@@ -17,9 +20,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            app(WeatherUpdateController::class)->update();
-        })->everyMinute();
+        $schedule->command('weather:update')
+        ->everyMinute();
     }
 
     /**
