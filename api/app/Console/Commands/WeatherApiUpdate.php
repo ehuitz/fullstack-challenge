@@ -25,8 +25,8 @@ class WeatherApiUpdate extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
-    
+    protected $description = 'Update Weather Information';
+
     private $client;
 
     public function __construct()
